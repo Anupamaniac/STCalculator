@@ -1,27 +1,37 @@
 package clean.code.challenge;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cart
 {
+	private List<Product> products = new ArrayList<Product>();
+	private TaxCalculator taxCalculator;
 
-	public void put(Commodity commodity1)
+	public Cart()
 	{
-		// TODO Auto-generated method stub
-		
+		taxCalculator = new SalesTaxCalculator();
 	}
-
-	public BigDecimal getSalesTax()
+	public void put(Product product)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		products.add(product);
 	}
 
 	public void printCart()
 	{
-		// loop over commodity
-		// pass it through applicable taxes 
-		// add to sales tax 
+		products.forEach(product -> System.out.println(product.getPrice()));
+		System.out.println(calculateSalesTax());
+	}
+	
+	public BigDecimal calculateSalesTax()
+	{
+		BigDecimal tax = BigDecimal.ZERO;
+		for (Product product : products)
+		{
+			tax = tax.add(taxCalculator.calculate(product));
+		}
+		return tax;
 	}
 
 }

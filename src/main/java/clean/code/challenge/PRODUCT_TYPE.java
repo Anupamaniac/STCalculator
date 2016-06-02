@@ -1,6 +1,6 @@
 package clean.code.challenge;
 
-public enum COMMODITY_TYPE
+public enum PRODUCT_TYPE
 {
 	BOOK
 

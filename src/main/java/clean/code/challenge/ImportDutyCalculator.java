@@ -6,10 +6,9 @@ public class ImportDutyCalculator implements TaxCalculator
 {
 
 	@Override
-	public BigDecimal calculate()
+	public BigDecimal calculate(Product p)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return BigDecimal.TEN;
 	}
 
 }

@@ -3,22 +3,22 @@ package clean.code.challenge;
 import java.math.BigDecimal;
 import lombok.Data;
 
-public @Data class ImportedCommodity extends Product implements ImportedProduct
+public @Data class ImportedCommodity extends Product
 {
 	Product product;
-	TaxCalculator importDutyCalculator;
+	
+	private TaxCalculator calculator;
 	
 	public ImportedCommodity(Product product)
 	{
 		this.product = product;
-		importDutyCalculator = new ImportDutyCalculator();
-		BigDecimal tax = calculateImportDuty(importDutyCalculator);
-		product.applyTax(tax);
+		calculator = new ImportDutyCalculator();
+		product.price = product.price.add(calculator.calculate(product));
 	}
-	
-	@Override
-	public BigDecimal calculateImportDuty(TaxCalculator calculator)
+
+	public BigDecimal getPrice()
 	{
-		return null;
+		return this.product.getPrice();
 	}
+
 }

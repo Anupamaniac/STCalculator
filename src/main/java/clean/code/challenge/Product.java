@@ -5,10 +5,10 @@ import java.math.BigDecimal;
 public abstract class Product
 {
 
-	public void applyTax(BigDecimal tax)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	protected BigDecimal price = BigDecimal.ZERO;
+	protected PRODUCT_TYPE productType;
+	
+	abstract public BigDecimal getPrice();
+
 
 }

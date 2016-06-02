@@ -2,9 +2,10 @@ package clean.code.challenge;
 
 import java.math.BigDecimal;
 import java.util.List;
+import lombok.Data;
 
-public class SalesTax
+public @Data class SalesTax
 {
-	BigDecimal baseTax;
-	List<BigDecimal> otherTaxes;
+	private BigDecimal baseTax;
+	private List<BigDecimal> otherTaxes;
 }
