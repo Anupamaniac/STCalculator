@@ -33,7 +33,6 @@ public class SalesTaxTest
 		Product commodity1 = new Commodity("Perfume",PRODUCT_TYPE.OTHER,price);
 		commodity1 = new ImportedCommodity(commodity1);
 		
-		System.out.println(commodity1.getPrice());
 		
 		price =  BigDecimal.valueOf(18.99);
 		Product commodity2 = new Commodity("Perfume",PRODUCT_TYPE.OTHER,price);
@@ -98,6 +97,9 @@ public class SalesTaxTest
 		
 		Assert.assertEquals(BigDecimal.valueOf(10.50).setScale(2, RoundingMode.HALF_UP), commodity2.getFinalPrice());
 		Assert.assertEquals(BigDecimal.valueOf(54.65), commodity1.getFinalPrice());    
+		Assert.assertEquals(new BigDecimal("7.65"), c.getNetSalesTax());
+		
+		Assert.assertEquals(new BigDecimal("65.15"), c.netCartValue());
 	}
 
 	
@@ -128,7 +130,11 @@ public class SalesTaxTest
 		c.printCart();
 		Assert.assertEquals(new BigDecimal("12.49"), commodity1.getFinalPrice());
 		Assert.assertEquals(BigDecimal.valueOf(16.49), commodity2.getFinalPrice());    
-		Assert.assertEquals(BigDecimal.valueOf(.85), commodity3.getFinalPrice());    
+		Assert.assertEquals(BigDecimal.valueOf(.85), commodity3.getFinalPrice());   
+		
+		Assert.assertEquals(new BigDecimal("1.50"), c.getNetSalesTax());
+		
+		Assert.assertEquals(new BigDecimal("29.83"), c.netCartValue());
 	}
 	
 	@Test

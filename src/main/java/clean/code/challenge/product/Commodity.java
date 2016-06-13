@@ -1,14 +1,15 @@
 package clean.code.challenge.product;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import clean.code.challenge.RoundingUtil;
-import clean.code.challenge.tax.SalesTax;
 import clean.code.challenge.tax.Tax;
 
 
 public class Commodity extends Product
 {
-	private SalesTax salesTax;
+	private List<Tax> taxes = new ArrayList<Tax>();
 
 	public Commodity(String description,PRODUCT_TYPE productType, BigDecimal price)
 	{
@@ -17,28 +18,29 @@ public class Commodity extends Product
 		this.productType = productType;
 	}
 
-	@Override
 	public BigDecimal getPrice()
 	{
 		return this.price;
 	}
 	
-	@Override
 	public BigDecimal getFinalPrice()
 	{
-		return RoundingUtil.round(this.price.add(this.salesTax.getBaseTax()));
+		BigDecimal totalTax = BigDecimal.ZERO;
+		for (Tax tax : taxes)
+		{
+			totalTax = totalTax.add(tax.getTaxValue());
+		}
+		return this.price.add(totalTax);
 	}
 
-	@Override
 	public PRODUCT_TYPE getProductType()
 	{
 		return this.productType;
 	}
 
-	@Override
-	public void applyTax(Tax salestax)
+	public void applyTax(Tax tax)
 	{
-		this.salesTax = (SalesTax) salestax;
+		taxes.add(tax);
 	}
 
 }

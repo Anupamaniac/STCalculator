@@ -3,7 +3,7 @@ package clean.code.challenge.tax;
 import java.math.BigDecimal;
 import lombok.Data;
 
-public @Data class ImortDuty implements Tax
+public @Data class ImortDuty 
 {
 	private BigDecimal taxValue;
 

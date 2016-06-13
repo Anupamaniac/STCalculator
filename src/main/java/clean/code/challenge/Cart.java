@@ -4,27 +4,33 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import clean.code.challenge.product.Product;
-import clean.code.challenge.tax.SalesTax;
-import clean.code.challenge.tax.SalesTaxCalculator;
+import clean.code.challenge.tax.Tax;
 import clean.code.challenge.tax.TaxCalculator;
+import clean.code.challenge.tax.TaxCalculatorBuilder;
 import lombok.Data;
 
 public @Data class Cart
 {
 	private List<Product> products = new ArrayList<Product>();
-	private TaxCalculator taxCalculator;
+	private List<TaxCalculator> taxCalculators;
 	private BigDecimal netSalesTax = BigDecimal.ZERO;
 
 	public Cart()
 	{
-		taxCalculator = new SalesTaxCalculator();
+		taxCalculators = TaxCalculatorBuilder.allApplicableTaxCalculators();
 	}
+
 	public void put(Product product)
-	{	
-		SalesTax salesTax = new SalesTax(taxCalculator.calculate(product));
-		product.applyTax(salesTax);
+	{
+		taxCalculators.stream().forEach(calculator -> {
+			Tax tax = calculator.calculate(product);
+			if (tax != null)
+			{
+				product.applyTax(tax);
+				netSalesTax = netSalesTax.add(tax.getTaxValue());
+			}
+		});
 		products.add(product);
-		netSalesTax = netSalesTax.add(salesTax.getBaseTax());
 	}
 
 	public void printCart()
@@ -32,12 +38,16 @@ public @Data class Cart
 		products.forEach(product -> System.out.println(product.getFinalPrice()));
 		System.out.println(netSalesTax);
 	}
-	
+
 	public BigDecimal netCartValue()
 	{
 		BigDecimal netSale = BigDecimal.ZERO;
-		products.forEach(product -> netSale.add(product.getFinalPrice()));
-		return netSale;
+		for (Product product : products)
+		{
+			netSale = netSale.add(product.getFinalPrice());
+		}
+		this.netSalesTax = netSale;
+		return this.netSalesTax;
 	}
-	
+
 }
