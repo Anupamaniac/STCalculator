@@ -15,6 +15,7 @@ public @Data class Cart
 	private List<TaxCalculator> taxCalculators;
 	private BigDecimal netSalesTax = BigDecimal.ZERO;
 	private BigDecimal netSaleValue = BigDecimal.ZERO;
+	Receipt receipt;
 
 	public Cart()
 	{
@@ -36,10 +37,8 @@ public @Data class Cart
 
 	public void printCart()
 	{
-		System.out.println("***********************Receipt***********************");
-		products.forEach(product -> System.out.println( product.getDescription() +" : "+ product.getFinalPrice()));
-		System.out.println("Sales Tax : " + netSalesTax);
-		System.out.println("Total : " + netCartValue());
+		receipt = new Receipt(this);
+		System.out.println(receipt);
 	}
 
 	public BigDecimal netCartValue()
