@@ -1,4 +1,4 @@
-package clean.code.challenge;
+package clean.code.challenge.cart;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public @Data class Cart
 	private List<Product> products = new ArrayList<Product>();
 	private List<TaxCalculator> taxCalculators;
 	private BigDecimal netSalesTax = BigDecimal.ZERO;
+	private BigDecimal netSaleValue = BigDecimal.ZERO;
 
 	public Cart()
 	{
@@ -35,8 +36,10 @@ public @Data class Cart
 
 	public void printCart()
 	{
-		products.forEach(product -> System.out.println(product.getFinalPrice()));
-		System.out.println(netSalesTax);
+		System.out.println("***********************Receipt***********************");
+		products.forEach(product -> System.out.println( product.getDescription() +" : "+ product.getFinalPrice()));
+		System.out.println("Sales Tax : " + netSalesTax);
+		System.out.println("Total : " + netCartValue());
 	}
 
 	public BigDecimal netCartValue()
@@ -46,8 +49,8 @@ public @Data class Cart
 		{
 			netSale = netSale.add(product.getFinalPrice());
 		}
-		this.netSalesTax = netSale;
-		return this.netSalesTax;
+		this.netSaleValue = netSale;
+		return this.netSaleValue;
 	}
 
 }

@@ -36,4 +36,10 @@ public class ImportedCommodity extends Product
 		return product.getFinalPrice();
 	}
 
+	@Override
+	public String getDescription()
+	{
+		return product.getDescription();
+	}
+
 }

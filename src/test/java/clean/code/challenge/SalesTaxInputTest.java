@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import org.junit.Test;
 import clean.code.challenge.cart.Cart;
+import clean.code.challenge.cart.CartBuilder;
 import clean.code.challenge.product.Commodity;
 import clean.code.challenge.product.ImportedCommodity;
 import clean.code.challenge.product.PRODUCT_TYPE;
 import clean.code.challenge.product.Product;
 import junit.framework.Assert;
 
-public class SalesTaxTest
+public class SalesTaxInputTest
 {
 	
 	/*Input 3:
@@ -30,38 +31,14 @@ public class SalesTaxTest
 	@Test
 	public void test4()    
 	{
-		BigDecimal price =  BigDecimal.valueOf(27.99);
-		Product commodity1 = new Commodity("Perfume",PRODUCT_TYPE.OTHER,price);
-		commodity1 = new ImportedCommodity(commodity1);
-		
-		
-		price =  BigDecimal.valueOf(18.99);
-		Product commodity2 = new Commodity("Perfume",PRODUCT_TYPE.OTHER,price);
-		
-		price = BigDecimal.valueOf(9.75);
-		Product commodity3 = new Commodity("Head ache pill",PRODUCT_TYPE.MEDICAL,price);
-		
-		price = BigDecimal.valueOf(11.25);
-		Product commodity4 = new Commodity("Chocolates",PRODUCT_TYPE.FOOD,price);
-		commodity4 = new ImportedCommodity(commodity4);
-		
-		
-		Cart c = new Cart();
-		c.put(commodity1);
-		c.put(commodity2);
-		c.put(commodity3);
-		c.put(commodity4);
-		c.printCart();
-		
-		Assert.assertEquals(new BigDecimal("32.19"), commodity1.getFinalPrice());
-		Assert.assertEquals(BigDecimal.valueOf(20.89), commodity2.getFinalPrice());    
-		Assert.assertEquals(BigDecimal.valueOf(9.75), commodity3.getFinalPrice());    
-		Assert.assertEquals(BigDecimal.valueOf(11.85), commodity4.getFinalPrice());    
-		
-		Assert.assertEquals(new BigDecimal("6.70"), c.getNetSalesTax());
-		
-		Assert.assertEquals(new BigDecimal("74.68"), c.netCartValue());
-		
+		String [] input = {
+				"1 imported bottle of perfume at 27.99",
+				"1 bottle of perfume at 18.99",
+				"1 box of imported chocolates at 11.25",
+				"1 packet of headache pills at 9.75"};
+		CartBuilder cartBuilder = new CartBuilder();
+		Cart cart = cartBuilder.createShoppingCartFrom(input);
+		cart.printCart();
 		
 	}
 	

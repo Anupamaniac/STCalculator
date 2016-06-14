@@ -1,4 +1,4 @@
-package clean.code.challenge;
+package clean.code.challenge.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

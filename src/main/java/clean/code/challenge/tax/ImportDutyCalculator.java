@@ -1,9 +1,9 @@
 package clean.code.challenge.tax;
 
 import java.math.BigDecimal;
-import clean.code.challenge.RoundingUtil;
 import clean.code.challenge.product.ImportedCommodity;
 import clean.code.challenge.product.Product;
+import clean.code.challenge.util.RoundingUtil;
 
 public class ImportDutyCalculator implements TaxCalculator
 {

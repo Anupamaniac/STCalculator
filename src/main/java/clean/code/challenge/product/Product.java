@@ -17,5 +17,7 @@ public abstract class Product
 
 	abstract public BigDecimal getFinalPrice();
 
+	abstract public String getDescription();
+
 
 }

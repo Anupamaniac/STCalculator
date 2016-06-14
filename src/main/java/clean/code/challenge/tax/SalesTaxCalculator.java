@@ -2,8 +2,8 @@ package clean.code.challenge.tax;
 
 import java.math.BigDecimal;
 import org.apache.commons.lang3.EnumUtils;
-import clean.code.challenge.RoundingUtil;
 import clean.code.challenge.product.Product;
+import clean.code.challenge.util.RoundingUtil;
 
 public class SalesTaxCalculator implements TaxCalculator
 {

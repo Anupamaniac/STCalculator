@@ -3,7 +3,6 @@ package clean.code.challenge.product;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import clean.code.challenge.RoundingUtil;
 import clean.code.challenge.tax.Tax;
 
 
@@ -41,6 +40,11 @@ public class Commodity extends Product
 	public void applyTax(Tax tax)
 	{
 		taxes.add(tax);
+	}
+	
+	public String getDescription()
+	{
+		return this.description;
 	}
 
 }
