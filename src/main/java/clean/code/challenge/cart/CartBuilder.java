@@ -1,5 +1,6 @@
 package clean.code.challenge.cart;
 
+import java.util.stream.IntStream;
 import clean.code.challenge.product.Commodity;
 import clean.code.challenge.product.ImportedCommodity;
 import clean.code.challenge.product.Product;
@@ -30,7 +31,8 @@ public class CartBuilder
 		Cart cart = new Cart();
 		for (String orderItem : order)
 		{
-			cart.put(createCartItemFrom(orderItem));
+			int quantity = parser.readQuantity(orderItem);
+			IntStream.range(0, quantity).forEach(i -> cart.put(createCartItemFrom(orderItem)));
 		}
 		return cart;
 	}

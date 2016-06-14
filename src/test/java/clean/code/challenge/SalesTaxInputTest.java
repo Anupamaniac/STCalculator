@@ -54,7 +54,7 @@ public class SalesTaxInputTest
 	public void test2()    
 	{
 		String [] input = {
-				"1 imported box of chocolates at 10.00",
+				"2 imported box of chocolates at 10.00",
 				"1 imported bottle of perfume at 47.50"
 				};
 		buildAndPrintcart(input);
