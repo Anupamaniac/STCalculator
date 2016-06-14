@@ -32,6 +32,7 @@ public @Data class Cart
 				netSalesTax = netSalesTax.add(tax.getTaxValue());
 			}
 		});
+		netSaleValue = netSaleValue.add(product.getFinalPrice());
 		products.add(product);
 	}
 
@@ -41,15 +42,5 @@ public @Data class Cart
 		System.out.println(receipt);
 	}
 
-	public BigDecimal netCartValue()
-	{
-		BigDecimal netSale = BigDecimal.ZERO;
-		for (Product product : products)
-		{
-			netSale = netSale.add(product.getFinalPrice());
-		}
-		this.netSaleValue = netSale;
-		return this.netSaleValue;
-	}
 
 }

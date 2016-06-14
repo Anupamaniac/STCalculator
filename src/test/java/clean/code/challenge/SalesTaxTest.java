@@ -60,7 +60,7 @@ public class SalesTaxTest
 		
 		Assert.assertEquals(new BigDecimal("6.70"), c.getNetSalesTax());
 		
-		Assert.assertEquals(new BigDecimal("74.68"), c.netCartValue());
+		Assert.assertEquals(new BigDecimal("74.68"), c.getNetSaleValue());
 		
 		
 	}
@@ -100,7 +100,7 @@ public class SalesTaxTest
 		Assert.assertEquals(BigDecimal.valueOf(54.65), commodity1.getFinalPrice());    
 		Assert.assertEquals(new BigDecimal("7.65"), c.getNetSalesTax());
 		
-		Assert.assertEquals(new BigDecimal("65.15"), c.netCartValue());
+		Assert.assertEquals(new BigDecimal("65.15"), c.getNetSaleValue());
 	}
 
 	
@@ -135,7 +135,7 @@ public class SalesTaxTest
 		
 		Assert.assertEquals(new BigDecimal("1.50"), c.getNetSalesTax());
 		
-		Assert.assertEquals(new BigDecimal("29.83"), c.netCartValue());
+		Assert.assertEquals(new BigDecimal("29.83"), c.getNetSaleValue());
 	}
 	
 	

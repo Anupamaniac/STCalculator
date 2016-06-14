@@ -17,7 +17,7 @@ public class Receipt
 		s.append("***********************Receipt***********************\n");
 		cart.getProducts().forEach(product -> s.append( product.getDescription() +" : "+ product.getFinalPrice()+"\n"));
 		s.append("Sales Tax : " + cart.getNetSalesTax()+"\n");
-		s.append("Total : " + cart.netCartValue()+"\n");
+		s.append("Total : " + cart.getNetSaleValue()+"\n");
 		return s.toString();
 	}
 	
